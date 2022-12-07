@@ -555,31 +555,31 @@
             }, createVideoAd: function(id, callback, failed) {
                 
                  setTimeout(() => {
+                     
                      requestAds();
-                     if (interSlot === event.slot){
-                
-                         googletag.pubads().addEventListener('slotRenderEnded', function(event) {
-                    
-                         
-                             if (event.isEmpty == true) {
-                         
+                     
+                     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                              
-                                 callback && callback();
-                         
-                         
-                             } else if (event.isEmpty == false) {
-                         
-                             
-                                 skip.addEventListener("click", function() {
-                             
+                             if (interSlot === event.slot){
+                                 
+                                 if (event.isEmpty == true) {
+                                     
                                      callback && callback();
-                         
-                                 });
+                                     
+                                 } else if (event.isEmpty == false) {
+                                     
+                                     skip.addEventListener("click", function() {
+                             
+                                         callback && callback();
+                                         
+                                     });
+                             
+                                 }
                              }
-                
-                         });
-                     }
-                  return;   
+                        
+                        });
+                     
+                     return;   
                  }, 0)
                    
             }, createInterstitialAd: function(id, callback) {
