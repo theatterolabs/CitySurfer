@@ -553,14 +553,24 @@
             }, requestOpenId: function() {
                 return "";
             }, createVideoAd: function(id, callback, failed) {
-                console.log("视频播放回调");
-                setTimeout(() => {
-                    add_h5adContain();
-                    setTimeout(function() {
-                        callback && callback();
-                    }, 9000);
-                    return;
-                }, 0)
+                requestAds();
+                return;
+                googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+                    
+                     if (event.isEmpty == true) {
+                         
+                         callback && callback();
+                         
+                     } else if (event.isEmpty == false) {
+                         
+                         skip.addEventListener("click", function() {
+                             
+                             callback && callback();
+                             
+                         });
+                     }
+                });
+                   
             }, createInterstitialAd: function(id, callback) {
                 console.log("插屏回调");
                 callback && callback();
