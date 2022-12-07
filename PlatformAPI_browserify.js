@@ -553,23 +553,34 @@
             }, requestOpenId: function() {
                 return "";
             }, createVideoAd: function(id, callback, failed) {
-                requestAds();
-                return;
-                googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+                
+                 setTimeout(() => {
+                     requestAds();
+                     if (interSlot === event.slot){
+                
+                         googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                     
-                     if (event.isEmpty == true) {
                          
-                         callback && callback();
+                             if (event.isEmpty == true) {
                          
-                     } else if (event.isEmpty == false) {
-                         
-                         skip.addEventListener("click", function() {
                              
-                             callback && callback();
+                                 callback && callback();
+                         
+                         
+                             } else if (event.isEmpty == false) {
+                         
                              
+                                 skip.addEventListener("click", function() {
+                             
+                                     callback && callback();
+                         
+                                 });
+                             }
+                
                          });
                      }
-                });
+                  return;   
+                 }, 0)
                    
             }, createInterstitialAd: function(id, callback) {
                 console.log("插屏回调");
