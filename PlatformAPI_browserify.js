@@ -558,13 +558,13 @@
                     requestAds();
                    async function f() { 
                        
-                       
+                       let xx;
                        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
                                   skip.addEventListener("click", function() {
                                     
-                                        global.xx = new Promise((resolve, reject) => {
+                                        xx = new Promise((resolve, reject) => {
                                             setTimeout(() => resolve("done!"), 0)
                                         });     
                                 
@@ -574,7 +574,7 @@
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                     
-                                           global.xx = new Promise((resolve, reject) => {
+                                           xx = new Promise((resolve, reject) => {
                                             setTimeout(() => resolve("done!"), 0)
                                         });       
                                 
