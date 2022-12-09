@@ -562,7 +562,7 @@
                                     add_h5adContain();
                                     setTimeout(function() {
                                         callback && callback();
-                                    }, 500);
+                                    }, 1000);
                                 return;
                                 }, 0)
                             } else if (event.isEmpty == false) {
@@ -571,7 +571,7 @@
                                     add_h5adContain();
                                     setTimeout(function() {
                                         callback && callback();
-                                    }, 500);
+                                    }, 1000);
                                 return;
                                 }, 0)
                                 
