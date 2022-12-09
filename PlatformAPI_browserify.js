@@ -554,17 +554,26 @@
                 return "";
             }, createVideoAd: function(id, callback, failed) {
                     console.log("Ad Requested By API");
-                    requestAds();
+                    var timeoutId;
+                     setTimeout(() => {
+                    
+                    timeoutId = setTimeout(function() {
+                        callback && callback();
+                    }, 900000);
                     return;
+                    }, 0);
+                
+                    requestAds();
+                   
                     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
-                                  callback && callback();
+                                  clearTimeout(timeoutId);
                                 
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                
-                                callback && callback();
+                                clearTimeout(timeoutId);
                                 
                                 });
                             }
