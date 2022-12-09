@@ -596,11 +596,10 @@
 
 
                
-                 f().then( 
+                 f().then(() => { 
                     callback && callback();
                      return;
-                    
-                 );     
+                 });     
                  
                
                 
