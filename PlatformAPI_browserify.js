@@ -555,7 +555,7 @@
             }, createVideoAd: function(id, callback, failed) {
                     console.log("Ad Requested By API");
                     requestAds();
-                    googletag.pubads().addEventListener('impressionViewable', function(event) {
+                    googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
                                 setTimeout(() => {
@@ -578,7 +578,7 @@
                                 });
                             }
                         }
-                    }
+                    });
             }, createInterstitialAd: function(id, callback) {
                 console.log("Interstitial Ad Requested By API ");
                 callback && callback();
