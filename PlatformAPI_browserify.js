@@ -596,11 +596,11 @@
 
 
                
-                 f().then(setTimeout(() => {
+                 f().then( 
                     callback && callback();
                      return;
                     
-                 });     
+                 );     
                  
                
                 
