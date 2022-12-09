@@ -552,25 +552,30 @@
                 return localStorage.setItem(key, value);
             }, requestOpenId: function() {
                 return "";
-            }, createVideoAd: function(id, callback, failed) {
+            }, createVideoAd: function() {
                     console.log("Ad Requested By API");
-                    var timeoutId = function() {
-                         callback && callback();
-                        return;
-                    }
-                
                     requestAds();
-                   
+                    
                     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
                                  
-                                timeoutId();
+                                createVideoAd: function(id, callback, failed) {
+                    
+                    
+                                    callback && callback();
+                                    return;
+                                }
                                 
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                     
-                                    timeoutId();
+                                      createVideoAd: function(id, callback, failed) {
+                    
+                    
+                                        callback && callback();
+                                        return;
+                                    }
                                 
                                 });
                             }
