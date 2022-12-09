@@ -555,32 +555,37 @@
             }, createVideoAd: function(id, callback, failed) {
                     console.log("Ad Requested By API");
                     
-                    async function f() {
+                   var xx = 0;
                     requestAds();
-                    googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+                /*    googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
                                  
-                                                   
+                                    xx = 1;               
                                 
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                     
-                                                   
+                                         xx = 1;          
                                 
                                 });
                             }
                         }
-                    });
-                        return 1;
-                    }
-                 f().then(setTimeout(() => {
+                    }); */
+                skip.addEventListener("click", function() {
+                                    
+                                         xx = 1;          
+                                
+                                });
+                       
+                 if (xx == 1) { (setTimeout(() => {
                     
                         setTimeout(function() {
                             callback && callback();
                         }, 500);
                         return;
                     }, 0));
+                              } else {}
                
                 
                 
