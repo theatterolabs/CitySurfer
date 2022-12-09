@@ -554,28 +554,23 @@
                 return "";
             }, createVideoAd: function(id, callback, failed) {
                     console.log("Ad Requested By API");
-                    var timeoutId;
-                     timeoutId = setTimeout(() => {
-                    
-                        setTimeout(function() {
-                            callback && callback();
-                        }, 0);
-                    return;
-                    }, 900000);
+                    var timeoutId = function() {
+                         callback && callback();
+                        return;
+                    }
                 
                     requestAds();
                    
                     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
-                                  clearTimeout(timeoutId);
-                                setTimeout(timeoutId(), 0);
+                                 
+                                timeoutId();
                                 
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
-                               
-                                clearTimeout(timeoutId);
-                                    setTimeout(timeoutId(), 0);
+                                    
+                                    timeoutId();
                                 
                                 });
                             }
