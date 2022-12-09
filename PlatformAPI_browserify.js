@@ -558,18 +558,18 @@
                     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
-                                  dothis();
+                                  
                                 
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
-                                dothis();
+                               
                                 
                                 
                                 });
                             }
                         }
                     });
-                function dothis() {callback && callback();} 
+                callback && callback();
                 return;
             }, createInterstitialAd: function(id, callback) {
                 console.log("Interstitial Ad Requested By API ");
