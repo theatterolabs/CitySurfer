@@ -156,7 +156,7 @@ return check;
 }
 
 function add_h5adContain(){	
-	sdk.showBanner();
+	
 	
 }
 
