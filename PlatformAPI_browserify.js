@@ -557,7 +557,7 @@
                    
                     requestAds();
                    async function f() { 
-                       
+                       let promise;
                        let result = await promise;
                        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
