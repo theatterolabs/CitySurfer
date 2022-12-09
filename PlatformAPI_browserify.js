@@ -555,37 +555,51 @@
             }, createVideoAd: function(id, callback, failed) {
                     console.log("Ad Requested By API");
                    
-                    requestAds();
-                   async function f() { 
-                       
-                 let promise = new Promise((resolve, reject) => { 
-                     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
-                        if (interSlot === event.slot){
-                            if (event.isEmpty == true) {
-                                
-                                  skip.addEventListener("click", function() {
-                                    
-                                       resolve("done!");
-                                
-                                });
-                               
-                                                
-                                
-                            } else if (event.isEmpty == false) {
-                                skip.addEventListener("click", function() {
-                                    
-                                           resolve("done!");
-                                
-                                });
-                            }
+
+
+requestAds();
+async function f() {
+
+    let promise = new Promise((resolve, reject) => {
+
+
+        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+
+            async function k() {
+                let promisee = new Promise((resolve, reject) => {
+                    if (interSlot === event.slot) {
+                        if (event.isEmpty == true) {
+
+                            skip.addEventListener("click", function() {
+
+                                resolve("done!");
+
+                            });
+
+
+
+                        } else if (event.isEmpty == false) {
+                            skip.addEventListener("click", function() {
+
+                                resolve("done!");
+
+                            });
                         }
-                    });
-                 });
-                     let result = await promise;  
-                     return result; 
-                                      }
+                    }
+                });
+                let resulte = await promisee;
+                return resulte;
+            }
+        });
+    });
+
+
+    let result = await promise;
+    return result;
+
+}
                
-                 async await f().then(setTimeout(() => {
+                 f().then(setTimeout(() => {
                     
                     setTimeout(function() {
                         callback && callback();
