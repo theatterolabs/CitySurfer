@@ -554,8 +554,15 @@
                 return "";
             }, createVideoAd: function(id, callback, failed) {
                     console.log("Ad Requested By API");
-                    requestAds();
-                    googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+                    //requestAds();
+                                                    setTimeout(() => {
+                                    add_h5adContain();
+                                    setTimeout(function() {
+                                        callback && callback();
+                                    }, 500);
+                                return;
+                                }, 0)
+              /*      googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
                                 setTimeout(() => {
@@ -578,7 +585,7 @@
                                 });
                             }
                         }
-                    });
+                    });*/
             }, createInterstitialAd: function(id, callback) {
                 console.log("Interstitial Ad Requested By API ");
                 callback && callback();
