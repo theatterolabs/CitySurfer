@@ -557,14 +557,14 @@
                    
                     requestAds();
                    async function f() { 
-                       let promise;
-                       let result = await promise;
+                       
+                       
                        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
                                   skip.addEventListener("click", function() {
                                     
-                                        let promise = new Promise((resolve, reject) => {
+                                        global.xx = new Promise((resolve, reject) => {
                                             setTimeout(() => resolve("done!"), 0)
                                         });     
                                 
@@ -574,7 +574,7 @@
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                     
-                                           let promise = new Promise((resolve, reject) => {
+                                           global.xx = new Promise((resolve, reject) => {
                                             setTimeout(() => resolve("done!"), 0)
                                         });       
                                 
@@ -582,6 +582,7 @@
                             }
                         }
                     });
+                       let result = await xx;
                                       return result; 
                                       }
                
