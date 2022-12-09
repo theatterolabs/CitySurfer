@@ -558,32 +558,31 @@
                     requestAds();
                    async function f() { 
                        
-                       let xx;
-                       googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+                 let promise = new Promise((resolve, reject) => { 
+                     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
+                                
                                   skip.addEventListener("click", function() {
                                     
-                                        xx = new Promise((resolve, reject) => {
-                                            setTimeout(() => resolve("done!"), 0)
-                                        });     
+                                       resolve("done!");
                                 
                                 });
+                               
                                                 
                                 
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                     
-                                           xx = new Promise((resolve, reject) => {
-                                            setTimeout(() => resolve("done!"), 0)
-                                        });       
+                                           resolve("done!");
                                 
                                 });
                             }
                         }
                     });
-                       let result = await xx;
-                                      return result; 
+                 });
+                     let result = await promise;  
+                     return result; 
                                       }
                
                   f().then(setTimeout(() => {
