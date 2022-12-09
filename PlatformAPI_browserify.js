@@ -552,35 +552,25 @@
                 return localStorage.setItem(key, value);
             }, requestOpenId: function() {
                 return "";
-            }, createVideoAd: function() {
+            }, createVideoAd: function(id, callback, failed) {
                     console.log("Ad Requested By API");
                     requestAds();
-                    
                     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
                                  
-                                createVideoAd: function(id, callback, failed) {
-                    
-                    
-                                    callback && callback();
-                                    return;
-                                }
+                               callback();
                                 
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                     
-                                      createVideoAd: function(id, callback, failed) {
-                    
-                    
-                                        callback && callback();
-                                        return;
-                                    }
+                                    callback();
                                 
                                 });
                             }
                         }
                     });
+                return;
                 
                 
             }, createInterstitialAd: function(id, callback) {
