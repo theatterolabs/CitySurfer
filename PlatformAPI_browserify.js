@@ -556,6 +556,12 @@
                     console.log("Ad Requested By API");
                     
                    var xx = 0;
+                    console.log("xx is set to:" + xx);
+                 if (xx == 1) { 
+                            callback && callback();
+                            return;
+                    
+                              }
                     requestAds();
                 /*    googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
@@ -574,18 +580,12 @@
                     }); */
                 skip.addEventListener("click", function() {
                                     
-                                         xx = 1;          
+                    xx = 1; 
+                    console.log("xx is set to:" + xx);
                                 
                                 });
                        
-                 if (xx == 1) { (setTimeout(() => {
-                    
-                        setTimeout(function() {
-                            callback && callback();
-                        }, 500);
-                        return;
-                    }, 0));
-                              } else {}
+                 
                
                 
                 
