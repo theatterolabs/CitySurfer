@@ -554,37 +554,37 @@
                 return "";
             }, createVideoAd: function(id, callback, failed) {
                     console.log("Ad Requested By API");
-                    
-                   var xx = 0;
-                    console.log("xx is set to:" + xx);
-                 if (xx == 1) { 
-                            callback && callback();
-                            return;
-                    
-                              }
+                   
                     requestAds();
-                /*    googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+                   async function f() { googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
-                                 
-                                    xx = 1;               
+                                  skip.addEventListener("click", function() {
+                                    
+                                                 
+                                
+                                });
+                                                
                                 
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                     
-                                         xx = 1;          
+                                                 
                                 
                                 });
                             }
                         }
-                    }); */
-                skip.addEventListener("click", function() {
-                                    
-                    xx = 1; 
-                    console.log("xx is set to:" + xx);
-                                
-                                });
-                       
+                    });
+                                       return 1;
+                                      }
+               
+                  f().then(setTimeout(() => {
+                    
+                    setTimeout(function() {
+                        callback && callback();
+                    }, 500);
+                    return;
+                }, 0));     
                  
                
                 
