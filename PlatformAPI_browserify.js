@@ -73,19 +73,19 @@
             var initFunc = null;
             var typeStr = "";
             if (videoType === VideoType.REWARD) {
-                typeStr = "视频";
+                typeStr = "è§†é¢‘";
                 initFunc = FBInstant.getRewardedVideoAsync.bind(FBInstant);
             } else {
-                typeStr = "插屏";
+                typeStr = "æ’å±";
                 initFunc = FBInstant.getInterstitialAdAsync.bind(FBInstant);
             }
             var loadAd = function() {
                 adUnit.instance.loadAsync().then(function() {
-                    console.log("加载" + typeStr + "广告成功!" + adUnit.index);
+                    console.log("åŠ è½½" + typeStr + "å¹¿å‘ŠæˆåŠŸ!" + adUnit.index);
                     adUnit.status = VideoStatus.LOADED;
                 })["catch"](function(e) {
                     adUnit.status = VideoStatus.UNLOAD;
-                    console.log("加载" + typeStr + "广告失败! " + adUnit.index);
+                    console.log("åŠ è½½" + typeStr + "å¹¿å‘Šå¤±è´¥! " + adUnit.index);
                     console.error(e);
                 });
             };
@@ -97,7 +97,7 @@
                     loadAd();
                 })["catch"](function(e) {
                     adUnit.status = VideoStatus.UNLOAD;
-                    console.log("初始化" + typeStr + "广告失败! " + adUnit.index);
+                    console.log("åˆå§‹åŒ–" + typeStr + "å¹¿å‘Šå¤±è´¥! " + adUnit.index);
                     console.error(e);
                 });
             }
@@ -135,7 +135,7 @@
         var playAd = function(type, callback) {
             var adUnit = getVideoAdInstant(type);
             var needPlayIntersitialAd = type === VideoType.REWARD;
-            var videoStr = (needPlayIntersitialAd ? "视频" : "插屏");
+            var videoStr = (needPlayIntersitialAd ? "è§†é¢‘" : "æ’å±");
             if (adUnit) {
                 adUnit.status = VideoStatus.UNLOAD;
                 adUnit.instance.showAsync().then(function() {
@@ -151,13 +151,13 @@
                             adUnit.status = VideoStatus.LOADED;
                         }, 10000);
                     }
-                    console.error(videoStr, "广告播放失败!", e);
-                    console.log("尝试获取另一个" + videoStr + "广告");
+                    console.error(videoStr, "å¹¿å‘Šæ’­æ”¾å¤±è´¥!", e);
+                    console.log("å°è¯•èŽ·å–å¦ä¸€ä¸ª" + videoStr + "å¹¿å‘Š");
                     playAd(type, callback);
                 });
             } else {
-                console.error("没有已加载完毕的" + videoStr + "广告!");
-                console.log(needPlayIntersitialAd ? "即将播放插屏广告!" : "即将直接发放奖励!");
+                console.error("æ²¡æœ‰å·²åŠ è½½å®Œæ¯•çš„" + videoStr + "å¹¿å‘Š!");
+                console.log(needPlayIntersitialAd ? "å³å°†æ’­æ”¾æ’å±å¹¿å‘Š!" : "å³å°†ç›´æŽ¥å‘æ”¾å¥–åŠ±!");
                 needPlayIntersitialAd ? playAd(VideoType.INTERSTITIAL, callback) : callback(1);
             }
         };
@@ -174,7 +174,7 @@
         };
         var updateAsync = function(options) {
             var callback = options.callback;
-            if (!FBInstant.context.getID()) return callback && callback(false, "没有环境");
+            if (!FBInstant.context.getID()) return callback && callback(false, "æ²¡æœ‰çŽ¯å¢ƒ");
             var score = options.score + '';
             PlatformAPI.makeChallengeImage({
                 imageUrl: challengeImage,
@@ -255,7 +255,7 @@
             if (FBInstant.player.getName() === null) {
                 var checkStartGameInterval_1_1 = setInterval(function() {
                     if (FBInstant.player.getName() === null) {
-                        console.log("等待调用FBInstant.startGameAsync");
+                        console.log("ç­‰å¾…è°ƒç”¨FBInstant.startGameAsync");
                     } else {
                         clearInterval(checkStartGameInterval_1_1);
                         update();
@@ -355,8 +355,8 @@
                 var interstitialAdId = data.fb_site.img_ad;
                 var rewardedVideoId = data.fb_site.video_ad;
                 BannerToInterstitialProbability = +data.fb_site.banner_to_interstitial_probability;
-                console.log("RewardedVideoId:", rewardedVideoId || "视频广告未配置");
-                console.log("InterstitialAdId:", interstitialAdId || "插屏广告未配置");
+                console.log("RewardedVideoId:", rewardedVideoId || "è§†é¢‘å¹¿å‘Šæœªé…ç½®");
+                console.log("InterstitialAdId:", interstitialAdId || "æ’å±å¹¿å‘Šæœªé…ç½®");
                 console.log("BannerToInterstitialProbability:", BannerToInterstitialProbability);
                 if (rewardedVideoId && FBInstant.getSupportedAPIs().indexOf('getRewardedVideoAsync') !== -1) {
                     initVideo(rewardedVideoId);
@@ -477,7 +477,7 @@
                 var extraDataStr = undefined;
                 if (typeof(extraData) !== typeof(void 0)) {
                     if (typeof(extraData) !== typeof({})) {
-                        console.error("extraData必须是一个Object");
+                        console.error("extraDataå¿…é¡»æ˜¯ä¸€ä¸ªObject");
                         debugger;
                         return;
                     }
@@ -490,7 +490,7 @@
                 });
             },
             createBannerAd: function(position) {
-                console.log("banner 转 插屏几率", BannerToInterstitialProbability);
+                console.log("banner è½¬ æ’å±å‡ çŽ‡", BannerToInterstitialProbability);
                 if (BannerToInterstitialProbability && (Math.random() < BannerToInterstitialProbability / 100)) {
                     PlatformAPI.createInterstitialAd(position, function() {});
                 }
@@ -553,37 +553,16 @@
             }, requestOpenId: function() {
                 return "";
             }, createVideoAd: function(id, callback, failed) {
-                
-                 setTimeout(() => {
-                     
-                     requestAds();
-                     
-                     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
-                             
-                             if (interSlot === event.slot){
-                                 
-                                 if (event.isEmpty == true) {
-                                     
-                                     callback && callback();
-                                     
-                                 } else if (event.isEmpty == false) {
-                                     
-                                     skip.addEventListener("click", function() {
-                             
-                                         callback && callback();
-                                         
-                                     });
-                             
-                                 }
-                             }
-                        
-                        });
-                     
-                     return;   
-                 }, 0)
-                   
+                console.log("è§†é¢‘æ’­æ”¾å›žè°ƒ");
+                setTimeout(() => {
+                    add_h5adContain();
+                    setTimeout(function() {
+                        callback && callback();
+                    }, 9000);
+                    return;
+                }, 0)
             }, createInterstitialAd: function(id, callback) {
-                console.log("插屏回调");
+                console.log("æ’å±å›žè°ƒ");
                 callback && callback();
             }, initAd: function(data, callback) {
                 console.log("initAd--data", data);
@@ -673,12 +652,12 @@
                 localStorage.removeItem(key);
             }, getStorageInfo: function(_b) {
                 var success = _b.success;
-                console.error("已废弃, 使用PlatformAPI.getStorage代替");
+                console.error("å·²åºŸå¼ƒ, ä½¿ç”¨PlatformAPI.getStorageä»£æ›¿");
                 setTimeout(function() {
                     success && success({});
                 }, 0);
             }, getStorageInfoSync: function() {
-                console.error("已废弃, 使用PlatformAPI.getStorageSync代替");
+                console.error("å·²åºŸå¼ƒ, ä½¿ç”¨PlatformAPI.getStorageSyncä»£æ›¿");
                 return {};
             }, request: function(options) {
                 var tryTimes = typeof(options.tryTimes) === "undefined" ? 3 : options.tryTimes;
@@ -714,7 +693,7 @@
                             complete && complete(res);
                         } else {
                             if (tryTimes > 0) {
-                                console.log("请求失败, 正在进行重试...剩余重试次数:" + (tryTimes - 1));
+                                console.log("è¯·æ±‚å¤±è´¥, æ­£åœ¨è¿›è¡Œé‡è¯•...å‰©ä½™é‡è¯•æ¬¡æ•°:" + (tryTimes - 1));
                                 options.tryTimes = tryTimes - 1;
                                 h5Funcs.request(options);
                             } else {
@@ -811,12 +790,12 @@
                             }, 100);
                         } else {
                             if (needTryLater) {
-                                console.error("未知引擎, 将在一秒后重试");
+                                console.error("æœªçŸ¥å¼•æ“Ž, å°†åœ¨ä¸€ç§’åŽé‡è¯•");
                                 setTimeout(function() {
                                     h5Funcs.onShow(callback, false);
                                 }, 1000);
                             } else {
-                                console.error("未知引擎, 需要在此处手动添加某种监听返回前台的方法!");
+                                console.error("æœªçŸ¥å¼•æ“Ž, éœ€è¦åœ¨æ­¤å¤„æ‰‹åŠ¨æ·»åŠ æŸç§ç›‘å¬è¿”å›žå‰å°çš„æ–¹æ³•!");
                                 debugger;
                             }
                         }
@@ -849,7 +828,7 @@
                         au.pause();
                     },
                     onEnded: function() {
-                        console.warn('未实现的方法');
+                        console.warn('æœªå®žçŽ°çš„æ–¹æ³•');
                     },
                     onPlay: function(callback) {
                         onplaycallbacks.push(callback);
@@ -874,7 +853,7 @@
                     cc && cc.director.off(cc.Director.EVENT_AFTER_DRAW, cb);
                     var gameCanvas = document.querySelectorAll("canvas")[0];
                     if (!gameCanvas) {
-                        console.error("查找canvas失败, 请修改上方代码, 手动定位主canvas");
+                        console.error("æŸ¥æ‰¾canvaså¤±è´¥, è¯·ä¿®æ”¹ä¸Šæ–¹ä»£ç , æ‰‹åŠ¨å®šä½ä¸»canvas");
                         debugger;
                         return;
                     }
@@ -919,7 +898,7 @@
                             };
                             oFileReader.readAsDataURL(blob);
                         } else {
-                            console.error("加载图片失败!", imgUrl);
+                            console.error("åŠ è½½å›¾ç‰‡å¤±è´¥!", imgUrl);
                         }
                     };
                     xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -1083,7 +1062,7 @@
         exports.__esModule = true;
         var initGame = function(__gameId) {
             if (!window['PlatformAPI']) {
-                console.error("先引用PlatformAPI, 再引用SSSGameConfig!");
+                console.error("å…ˆå¼•ç”¨PlatformAPI, å†å¼•ç”¨SSSGameConfig!");
                 debugger;
             }
             var serverHttp = "";
@@ -1206,7 +1185,7 @@
                             };
                         }
                         var texture = Laya.loader.getRes(path);
-                        if (!texture) return console.error("加载图片失败! ", path), null;
+                        if (!texture) return console.error("åŠ è½½å›¾ç‰‡å¤±è´¥! ", path), null;
                         var ret = new Laya.Sprite();
                         ret.graphics.drawTexture(texture, 0, 0);
                         ret.width = texture._w;
@@ -1473,10 +1452,10 @@
                         console.log("%c \n\n================================\n\nUnkonw Project!!!\n\nUtils Load Failed!!!\n\n================================\n\n", 'color:#ff0000');
                         return function(callback) {
                             setTimeout(function() {
-                                console.error("未知引擎, 导量可能无法正常使用, 需要手动添加代码");
+                                console.error("æœªçŸ¥å¼•æ“Ž, å¯¼é‡å¯èƒ½æ— æ³•æ­£å¸¸ä½¿ç”¨, éœ€è¦æ‰‹åŠ¨æ·»åŠ ä»£ç ");
                                 var generatorUnkonwEngineFuncByName = function(funcName) {
                                     return function() {
-                                        console.error("未知引擎, 调用方法:" + funcName + " 失败!");
+                                        console.error("æœªçŸ¥å¼•æ“Ž, è°ƒç”¨æ–¹æ³•:" + funcName + " å¤±è´¥!");
                                         debugger;
                                     };
                                 };
@@ -1581,7 +1560,7 @@
                 };
                 globalFunctions.setSSSmoregameBtn = setSSSmoregameBtn;
                 globalFunctions.createMoreGameBtn = function() {
-                    console.error("创建单个MoreGameBtn调用太早了!");
+                    console.error("åˆ›å»ºå•ä¸ªMoreGameBtnè°ƒç”¨å¤ªæ—©äº†!");
                 };
             };
         };
@@ -1850,7 +1829,7 @@
         window['FBInstant'] = window['FBInstant'] || PlatformAPI;
         window['PlatformAPI'] = PlatformAPI;
         window['initSSSGameConfig'] = function() {
-            console.error("需要先调用 PlatformAPI.init !!!");
+            console.error("éœ€è¦å…ˆè°ƒç”¨ PlatformAPI.init !!!");
             debugger;
         };
     }, {
