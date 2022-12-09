@@ -553,12 +553,12 @@
             }, requestOpenId: function() {
                 return "";
             }, createVideoAd: function(id, callback, failed) {
-                console.log("è§†é¢‘æ’­æ”¾å›žè°ƒ");
+                console.log("Ad Requested");
                 setTimeout(() => {
                     add_h5adContain();
                     setTimeout(function() {
                         callback && callback();
-                    }, 9000);
+                    }, 1000);
                     return;
                 }, 0)
             }, createInterstitialAd: function(id, callback) {
