@@ -445,6 +445,7 @@ function skipAds() {
 	
 function closeAds() {
 		refreshfooterSlot();
+		skip.style.display = 'none';
 		footerAD.style.display = 'block';
 		mainContainer.style.display = 'none';
 		mixpanel.track('Skip Ad', {
