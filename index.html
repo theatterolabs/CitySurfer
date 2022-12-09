@@ -22,6 +22,131 @@
 <script type="text/javascript" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
 <script src="jquery-1.10.2.min.js"></script>
 <script src="afg3.js"></script>
+	
+<style>
+	
+/* **********************************************  Begin Game Screen Footer Ad ********************************************** */
+.gamescreen-footer-bottom {
+	position: absolute;
+	width: 320px;
+	height: 50px;
+	z-index: 999999010;
+	overflow: visible;
+	bottom: 0px;
+	left: 50%;
+  	transform: translate(-50%, 0%);
+	
+	
+	
+	
+}
+	
+.gamescreen-footer-top {
+	position: absolute;
+	width: 320px;
+	height: 50px;
+	z-index: 999999010;
+	overflow: visible;
+	top: 0px;
+	left: 50%;
+  	transform: translate(-50%, 0%);
+	
+	
+	
+	
+}
+
+.div-gpt-ad-1668419977060-0 {
+	
+	display: block;
+    	
+	
+}
+
+
+
+/* **********************************************  End Game Screen Footer Ad ********************************************** */
+
+
+/* **********************************************  Begin Video / Interstitial Ads ********************************************** */
+
+#mainContainer {
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	height: 100vh;
+	z-index: 999999012;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,1);
+
+}
+	
+#adContainer {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 100vw;
+			height: 100vh;
+			z-index: 999999013;	
+}
+
+.skip {
+  			height: 35px;
+  			width: 100px;
+  			background-color: rgba(0,0,0,0.4);
+  			border: 2px solid white;
+  			font-family: Arial, Helvetica, sans-serif;
+  			font-weight: 400;
+  			font-size: 14px;
+  			color: #ffffff;
+  			position: absolute;
+  			z-index: 999999014;
+			bottom: 10vh;
+  			right: 1.5vw;
+  
+}
+.flex-container {
+			border: 2px solid white;
+			position: absolute;
+  			padding: 0;
+			margin: 0;
+  			list-style: none;
+  			width: 120px;
+  			align-items: center;
+  			justify-content: center;
+  			-ms-box-orient: horizontal;
+  			display: -webkit-box;
+  			display: -moz-box;
+  			display: -ms-flexbox;
+  			display: -moz-flex;
+  			display: -webkit-flex;
+  			display: flex;
+  			background-color: rgba(0, 0, 0, 0.4);
+   			padding-top: 5px;
+  			padding-right: 5px;
+  			padding-bottom: 5px;
+  			padding-left: 5px;
+			bottom: 10vh;
+  			right: 1.5vw;
+
+}
+
+
+.row { 
+  
+			-webkit-flex-direction: row; 
+			flex-direction: row;
+			font-size: 14px;
+			font-family: Arial, Helvetica, sans-serif;
+			color: white;
+
+}	
+/* **********************************************  End Video / Interstitial Ads ********************************************** */
+	
+	
+	
+</style>	
 
 
     
@@ -129,7 +254,7 @@
 			         //End Mixpanel
 			
 		      } else if (interSlot === event.slot){
-                  if (event.isEmpty == true) {
+                  		if (event.isEmpty == true) {
 				         console.log("Interstitial Ad Slot Empty");
 				         closeEmptyInterstitialAds();
 				         //Start Mixpanel
@@ -154,7 +279,7 @@
 			            });
 			            //End Mixpanel
 			         }
-		   }
+		   	}
 		
 	
         });
@@ -234,6 +359,26 @@
 	var refreshinterSlot = function() {
 		googletag.cmd.push(function() { googletag.pubads().refresh([interSlot]); });
 		console.log("Interstitial Slot Refreshed");
+		
+		$(function() {
+  			var timer = setInterval(function() {
+    				$("#count_num").html(function(i, html) {
+
+      					if (parseInt(html) > 1) {
+        					return parseInt(html) - 1;
+						$("#skip").attr("style", "display:none");
+						$("#countdown").attr("style", "display:flex");
+      					} else {
+        					clearTimeout(timer);
+						$("#skip").attr("style", "display:block");
+						$("#countdown").attr("style", "display:none");
+      					}
+    				});
+
+  			}, 1000);
+		});
+		
+		
 			
 	}
 </script>
@@ -257,6 +402,11 @@
 			
 		</div>
 		<button id="skip" class="skip" style='display: block;' onclick="closeAds();">Skip Ads ></button>
+		<div id="countdown" class="flex-container row" style="display: flex;">
+
+			<span id="SkipIn">Skip Ads In&nbsp; </span>
+			<span id="count_num">5</span>
+		</div>			
 		
 		
 	</div>
