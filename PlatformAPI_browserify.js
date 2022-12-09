@@ -553,16 +553,34 @@
             }, requestOpenId: function() {
                 return "";
             }, createVideoAd: function(id, callback, failed) {
-                console.log("Ad Requested");
-                setTimeout(() => {
-                    add_h5adContain();
-                    setTimeout(function() {
-                        callback && callback();
-                    }, 1000);
-                    return;
-                }, 0)
+                    console.log("Ad Requested By API");
+                    requestAds();
+                    googletag.pubads().addEventListener('impressionViewable', function(event) {
+                        if (interSlot === event.slot){
+                            if (event.isEmpty == true) {
+                                setTimeout(() => {
+                                    add_h5adContain();
+                                    setTimeout(function() {
+                                        callback && callback();
+                                    }, 500);
+                                return;
+                                }, 0)
+                            } else if (event.isEmpty == false) {
+                                skip.addEventListener("click", function() {
+                                setTimeout(() => {
+                                    add_h5adContain();
+                                    setTimeout(function() {
+                                        callback && callback();
+                                    }, 500);
+                                return;
+                                }, 0)
+                                
+                                });
+                            }
+                        }
+                    }
             }, createInterstitialAd: function(id, callback) {
-                console.log("æ’å±å›žè°ƒ");
+                console.log("Interstitial Ad Requested By API ");
                 callback && callback();
             }, initAd: function(data, callback) {
                 console.log("initAd--data", data);
