@@ -560,12 +560,12 @@
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
                                  
-                               callback();
+                               callback && callback();
                                 
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                     
-                                callback();
+                                callback && callback();
                                 
                                 });
                             }
