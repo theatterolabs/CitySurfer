@@ -554,31 +554,33 @@
                 return "";
             }, createVideoAd: function(id, callback, failed) {
                     console.log("Ad Requested By API");
-                     setTimeout(() => {
                     
-                        setTimeout(function() {
-                            callback && callback();
-                        }, 500);
-                        return;
-                    }, 0);
-                    t.pauseGame();
+                    async function f() {
                     requestAds();
                     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
                                  
-                                                   t.unpauseGame();
+                                                   
                                 
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                     
-                                                    t.unpauseGame();
+                                                   
                                 
                                 });
                             }
                         }
                     });
-                
+                        return 1;
+                    }
+                 f().then(setTimeout(() => {
+                    
+                        setTimeout(function() {
+                            callback && callback();
+                        }, 500);
+                        return;
+                    }, 0));
                
                 
                 
