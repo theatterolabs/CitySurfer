@@ -387,7 +387,7 @@
 				</div>	
 			
 		</div>
-		<button id="skip" class="skip" style='display: block;' onclick="closeAds();">Skip Ads ></button>
+		<button id="skip" class="skip" style='display: none;' onclick="closeAds();">Skip Ads ></button>
 		<div id="countdown" class="flex-container row" style="display: flex;">
 
 			<span id="SkipIn">Skip Ads In&nbsp; </span>
@@ -444,7 +444,7 @@ function skipAds() {
 */
 	
 function closeAds() {
-		
+		refreshfooterSlot();
 		footerAD.style.display = 'block';
 		mainContainer.style.display = 'none';
 		mixpanel.track('Skip Ad', {
@@ -458,7 +458,7 @@ function closeAds() {
 	
 	
 function closeEmptyInterstitialAds() {
-	
+	skip.style.display = 'none';
 	footerAD.style.display = 'block';
 	refreshfooterSlot();
 	mainContainer.style.display = 'none';
