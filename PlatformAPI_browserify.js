@@ -557,55 +557,50 @@
                    
 
 
-requestAds();
-async function f() {
+                    requestAds();
+                    async function f() {
 
-    let promise = new Promise((resolve, reject) => {
+                        let promise = new Promise((resolve, reject) => {
 
 
-        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+                            googletag.pubads().addEventListener('slotRenderEnded', function(event) {
 
-            async function k() {
-                let promisee = new Promise((resolve, reject) => {
-                    if (interSlot === event.slot) {
-                        if (event.isEmpty == true) {
 
-                            skip.addEventListener("click", function() {
+                                if (interSlot === event.slot) {
+                                    if (event.isEmpty == true) {
 
-                                resolve("done!");
+                                        skip.addEventListener("click", function() {
 
+                                            resolve("done!");
+
+                                        });
+                                        
+                                    } else if (event.isEmpty == false) {
+                            
+                                        skip.addEventListener("click", function() {
+
+                                            resolve("done!");
+
+                                        });
+                                    }
+                                }
+                        
                             });
+                        });
+    
 
 
-
-                        } else if (event.isEmpty == false) {
-                            skip.addEventListener("click", function() {
-
-                                resolve("done!");
-
-                            });
-                        }
+                        let result = await promise;
+                        return result;
                     }
-                });
-                let resulte = await promisee;
-                return resulte;
-            }
-        });
-    });
 
 
-    let result = await promise;
-    return result;
-
-}
                
                  f().then(setTimeout(() => {
+                    callback && callback();
+                     return;
                     
-                    setTimeout(function() {
-                        callback && callback();
-                    }, 500);
-                    return;
-                }, 0));     
+                 });     
                  
                
                 
