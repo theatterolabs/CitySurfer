@@ -559,16 +559,17 @@
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
                                 callback && callback();   
-                                return;
+                                
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                 callback && callback();   
-                                return;
+                                
                                 
                                 });
                             }
                         }
                     });
+                return;
             }, createInterstitialAd: function(id, callback) {
                 console.log("Interstitial Ad Requested By API ");
                 callback && callback();
