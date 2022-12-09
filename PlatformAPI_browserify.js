@@ -555,13 +555,13 @@
             }, createVideoAd: function(id, callback, failed) {
                     console.log("Ad Requested By API");
                     var timeoutId;
-                     setTimeout(() => {
+                     timeoutId = setTimeout(() => {
                     
-                    timeoutId = setTimeout(function() {
-                        callback && callback();
-                    }, 900000);
+                        setTimeout(function() {
+                            callback && callback();
+                        }, 0);
                     return;
-                    }, 0);
+                    }, 900000);
                 
                     requestAds();
                    
@@ -569,11 +569,13 @@
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
                                   clearTimeout(timeoutId);
+                                setTimeout(timeoutId(), 0);
                                 
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                
                                 clearTimeout(timeoutId);
+                                    setTimeout(timeoutId(), 0);
                                 
                                 });
                             }
