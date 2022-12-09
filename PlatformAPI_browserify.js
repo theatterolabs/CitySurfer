@@ -555,13 +555,13 @@
             }, createVideoAd: function(id, callback, failed) {
                     console.log("Ad Requested By API");
                     //requestAds();
-                                                    setTimeout(() => {
-                                    add_h5adContain();
-                                    setTimeout(function() {
+                                                    //setTimeout(() => {
+                                    //add_h5adContain();
+                                    //setTimeout(function() {
                                         callback && callback();
-                                    }, 500);
+                                    //}, 500);
                                 return;
-                                }, 0)
+                                //}, 0)
               /*      googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
