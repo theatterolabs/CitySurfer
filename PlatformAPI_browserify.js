@@ -556,12 +556,15 @@
                     console.log("Ad Requested By API");
                    
                     requestAds();
-                   async function f() { googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+                   async function f() { 
+                       let promise;
+                       let result = await promise;
+                       googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
                                   skip.addEventListener("click", function() {
                                     
-                                                 
+                                        let promise = new Promise.resolve(1);         
                                 
                                 });
                                                 
@@ -569,13 +572,13 @@
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                     
-                                                 
+                                           let promise = new Promise.resolve(1);      
                                 
                                 });
                             }
                         }
                     });
-                                       return 1;
+                                      return result; 
                                       }
                
                   f().then(setTimeout(() => {
