@@ -585,7 +585,7 @@
                      return result; 
                                       }
                
-                  f().then(setTimeout(() => {
+                 async await f().then(setTimeout(() => {
                     
                     setTimeout(function() {
                         callback && callback();
