@@ -561,18 +561,18 @@
                         }, 500);
                         return;
                     }, 0);
-                    pauseGame();
+                    GameMgr.getInstance().pauseGame();
                     requestAds();
                     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
                         if (interSlot === event.slot){
                             if (event.isEmpty == true) {
                                  
-                               unpauseGame();
+                                                   GameMgr.getInstance().unpauseGame();
                                 
                             } else if (event.isEmpty == false) {
                                 skip.addEventListener("click", function() {
                                     
-                                unpauseGame();
+                                                    GameMgr.getInstance().unpauseGame();
                                 
                                 });
                             }
