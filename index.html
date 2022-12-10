@@ -472,7 +472,8 @@ function closeEmptyInterstitialAds() {
 
 	
 function requestAds() {
-	
+	countdown.style.display = 'flex';
+	skip.style.display = 'none';
 	footerAD.style.display = 'none';
    	refreshinterSlot();
 	clearInterval(myTimer);
@@ -484,10 +485,10 @@ function requestAds() {
 		$("#count_num").html(function(i, html) {
 		
 				if (parseInt(html) > 1) {
-        					
+        				
 					return parseInt(html) - 1;			
-					skip.style.display = 'none';			
-					countdown.style.display = 'flex';
+								
+					
       					
 				} else {
         					
