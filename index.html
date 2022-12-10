@@ -275,7 +275,7 @@
 		      } else if (interSlot === event.slot){
                   		if (event.isEmpty == true) {
 				         console.log("Interstitial Ad Slot Empty");
-				         //closeEmptyInterstitialAds();
+				         closeEmptyInterstitialAds();
 				         //Start Mixpanel
 				         mixpanel.track('Ad Failure', {
 		
@@ -475,13 +475,6 @@ function closeEmptyInterstitialAds() {
 	myTimer = setInterval(footerInterval, 15000);
 	mainContainer.style.display = 'none';
 	
-	      mixpanel.track('Ad Failure', {
-  		      'Game Name': "City Surfer",
-		      'Ad Media Type': "Video"
-  		
-	      });
-	
-
 }
 	
 
