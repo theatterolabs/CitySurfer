@@ -576,12 +576,9 @@
                                         });
                                         
                                     } else if (event.isEmpty == false) {
-                            
-                                        skip.addEventListener("click", function() {
-
+                                        
                                             resolve("done!");
-
-                                        });
+                                        
                                     }
                                 }
                         
@@ -597,7 +594,7 @@
 
                
                  f().then(() => { 
-                    callback && callback();
+                     callback && callback();
                      return;
                  });     
                  
