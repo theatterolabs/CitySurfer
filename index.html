@@ -478,8 +478,8 @@ function requestAds() {
 	clearInterval(myTimer);
 	myTimer = 0;
 	mainContainer.style.display = 'block';
-	$(function() {	
-	var timer = setInterval(function() {
+	var skipTimer = setInterval(skipInterval, 1000);
+	function skipInterval() {
     				
 		$("#count_num").html(function(i, html) {
 		
@@ -491,17 +491,16 @@ function requestAds() {
       					
 				} else {
         					
-					clearTimeout(timer);
+					clearInterval(skipTimer);
+					skipTimer = 0;
 					skip.style.display = 'block';			
 					countdown.style.display = 'none';
 					$("#count_num").text("5");
 					
 				}			
-			});  			
-		}, 1000);
-	});
-	
-}
+			
+		});  
+	}
 
 	
 	
