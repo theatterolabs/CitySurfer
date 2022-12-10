@@ -568,16 +568,16 @@
 
                                 if (interSlot === event.slot) {
                                     if (event.isEmpty == true) {
-
+                                        
+                                        resolve("done!");
+                                        
+                                    } else if (event.isEmpty == false) {
+                                        
                                         skip.addEventListener("click", function() {
 
                                             resolve("done!");
 
                                         });
-                                        
-                                    } else if (event.isEmpty == false) {
-                                        
-                                            resolve("done!");
                                         
                                     }
                                 }
