@@ -484,32 +484,29 @@ function requestAds() {
 	footerAD.style.display = 'none';
    	refreshinterSlot();
 	mainContainer.style.display = 'block';
-	timer();
-	
+	$(function() {	
+	var timer = setInterval(function() {
+    				
+		$("#count_num").html(function(i, html) {
 		
-
-		
+				if (parseInt(html) > 1) {
+        					
+					return parseInt(html) - 1;			
+					skip.style.display = 'none';			
+					countdown.style.display = 'flex';
+      					
+				} else {
+        					
+					clearTimeout(timer);			
+					skip.style.display = 'block';			
+					countdown.style.display = 'none';			
+				}			
+			});  			
+		}, 1000);
+	});
 	
 }
-	
-var timer = setInterval(function() {
-    				
-	$("#count_num").html(function(i, html) {
-		
-		if (parseInt(html) > 1) {
-        					
-			return parseInt(html) - 1;			
-			skip.style.display = 'none';			
-			countdown.style.display = 'flex';
-      					
-		} else {
-        					
-			clearTimeout(timer);			
-			skip.style.display = 'block';			
-			countdown.style.display = 'none';			
-		}			
-	});  			
-}, 1000);
+
 	
 	
 var footerInterval = setInterval(function() {
