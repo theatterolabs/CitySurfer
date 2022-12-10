@@ -246,16 +246,31 @@
 		
 		
 		      if(footerSlot === event.slot){
-        		      console.log("Footer Ad Initialized");
-			         //Start Mixpanel
-			         mixpanel.track('Ad Initialized', {
+			      if (event.isEmpty == true) {
+        		      		console.log("Footer Ad Slot Empty");
+			         	//Start Mixpanel
+			        	 mixpanel.track('Ad Failure', {
 		
-				         'Game Name': "City Surfer",
-				         'Ad Media Type': "Footer"
+				         	'Game Name': "City Surfer",
+				         	'Ad Media Type': "Footer",
+					 	'Failure Reason': "Ad Slot Empty"
 			
   		
-			         });
-			         //End Mixpanel
+			         	});
+			         	//End Mixpanel
+			      } else if (event.isEmpty == false) {
+				       console.log("Footer Ad Initialized");
+			         	//Start Mixpanel
+			         	mixpanel.track('Ad Initialized', {
+		
+				         	'Game Name': "City Surfer",
+				         	'Ad Media Type': "Footer"
+			
+  		
+			         	});
+			         	//End Mixpanel
+				      
+			      }
 			
 		      } else if (interSlot === event.slot){
                   		if (event.isEmpty == true) {
