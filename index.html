@@ -446,7 +446,7 @@ function skipAds() {
 */
 	
 function closeAds() {
-		refreshfooterSlot();
+		footerInterval();
 		skip.style.display = 'none';
 		footerAD.style.display = 'block';
 		mainContainer.style.display = 'none';
@@ -456,14 +456,14 @@ function closeAds() {
   		
 		});
 	
-	console.log("Skip Ad");
+		console.log("Skip Ad");
 }
 	
 	
 function closeEmptyInterstitialAds() {
 	skip.style.display = 'none';
 	footerAD.style.display = 'block';
-	refreshfooterSlot();
+	footerInterval();
 	mainContainer.style.display = 'none';
 	
 	      mixpanel.track('Ad Failure', {
@@ -481,6 +481,7 @@ function requestAds() {
 	
 	footerAD.style.display = 'none';
    	refreshinterSlot();
+	clearInterval(footerInterval);
 	mainContainer.style.display = 'block';
 	$(function() {	
 	var timer = setInterval(function() {
@@ -497,7 +498,9 @@ function requestAds() {
         					
 					clearTimeout(timer);			
 					skip.style.display = 'block';			
-					countdown.style.display = 'none';			
+					countdown.style.display = 'none';
+					$("#count_num").text("5");
+					
 				}			
 			});  			
 		}, 1000);
@@ -508,7 +511,7 @@ function requestAds() {
 	
 	
 var footerInterval = setInterval(function() {
-   refreshinterSlot();
+   refreshfooterSlot();
  }, 15000);
 
 
