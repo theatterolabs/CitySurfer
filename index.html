@@ -374,7 +374,7 @@
 
 
 </head>
-<body onload="setup();">
+<body>
    
 <!-- ********************************************** Begin Interstitial AD ********************************************** -->
 	<div id="mainContainer" class="mainContainer" style="display: none;">
@@ -429,15 +429,9 @@ var videoContent;
 var mainContainer = document.getElementById('mainContainer');
 var footerAD = document.getElementById('gamescreen-footer');
 var skip = document.getElementById('skip');
-var countdown = document.getElementById('countdown');	
+var countdown = document.getElementById('countdown');
+var myTimer = setInterval(footerInterval, 15000);	
 
-   
-function setup() {
-	refreshfooterSlot();
-	
-}
-
-	
 
 /*	
 function skipAds() {
@@ -446,7 +440,7 @@ function skipAds() {
 */
 	
 function closeAds() {
-		setInterval(footerInterval, 15000);	
+		myTimer = setInterval(footerInterval, 15000);	
 		skip.style.display = 'none';
 		footerAD.style.display = 'block';
 		mainContainer.style.display = 'none';
@@ -463,7 +457,7 @@ function closeAds() {
 function closeEmptyInterstitialAds() {
 	skip.style.display = 'none';
 	footerAD.style.display = 'block';
-	setInterval(footerInterval, 15000);
+	myTimer = setInterval(footerInterval, 15000);
 	mainContainer.style.display = 'none';
 	
 	      mixpanel.track('Ad Failure', {
@@ -481,7 +475,8 @@ function requestAds() {
 	
 	footerAD.style.display = 'none';
    	refreshinterSlot();
-	clearInterval(footerInterval);
+	clearInterval(myTimer);
+	myTimer = 0;
 	mainContainer.style.display = 'block';
 	$(function() {	
 	var timer = setInterval(function() {
@@ -510,9 +505,10 @@ function requestAds() {
 
 	
 	
-var footerInterval = setInterval(function() {
+function footerInterval() {
    refreshfooterSlot();
- }, 15000);
+ }
+	
 
 
 	
