@@ -111,12 +111,12 @@
   			align-items: center;
   			justify-content: center;
   			-ms-box-orient: horizontal;
-  			display: -webkit-box;
+  		/*	display: -webkit-box;
   			display: -moz-box;
   			display: -ms-flexbox;
   			display: -moz-flex;
   			display: -webkit-flex;
-  			display: flex;
+  			display: flex; */
   			background-color: rgba(0, 0, 0, 0.4);
    			padding-top: 5px;
   			padding-right: 5px;
@@ -491,7 +491,7 @@ function requestAds() {
       					
 				} else {
         					
-					clearTimeout(timer);			
+					clearTimeout(timer);
 					skip.style.display = 'block';			
 					countdown.style.display = 'none';
 					$("#count_num").text("5");
